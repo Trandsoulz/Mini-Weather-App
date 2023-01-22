@@ -1,0 +1,26 @@
+{
+  "coord": { "lon": 7.0134, "lat": 4.7774 },
+  "weather": [
+    { "id": 801, "main": "Clouds", "description": "few clouds", "icon": "02d" }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 306.02,
+    "feels_like": 308.37,
+    "temp_min": 306.02,
+    "temp_max": 306.02,
+    "pressure": 1006,
+    "humidity": 47,
+    "sea_level": 1006,
+    "grnd_level": 1004
+  },
+  "visibility": 10000,
+  "wind": { "speed": 6.58, "deg": 186, "gust": 5.6 },
+  "clouds": { "all": 19 },
+  "dt": 1674402651,
+  "sys": { "country": "NG", "sunrise": 1674366394, "sunset": 1674409194 },
+  "timezone": 3600,
+  "id": 2324774,
+  "name": "Port Harcourt",
+  "cod": 200
+}

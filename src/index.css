@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Outfit", "Segoe UI", "Roboto";
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  p {
+    @apply text-[1.3rem];
+  }
+
+  h1 {
+    @apply text-[4rem];
+  }
+}
+
+@layer {
+  .app {
+    @apply w-[100%] h-screen text-white bg-imgBg bg-no-repeat bg-center bg-cover;
+  }
+  .search {
+    @apply bg-transparent text-center py-4 max-w-[450px] mx-auto !important;
+  }
+
+  .container {
+    @apply max-w-[700px] h-[75%] m-auto px-4 relative flex flex-col justify-between !important;
+  }
+
+  .description {
+    @apply relative left-[40%] top-[-120%] -rotate-90 !important;
+  }
+
+  .bottom {
+    @apply flex justify-evenly p-4 bg-rgbaWhite rounded-2xl text-center text-[.5rem] my-4 mx-auto w-full !important;
+  }
+}
