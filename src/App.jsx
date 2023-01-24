@@ -7,6 +7,7 @@ const App = () => {
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState();
   const [celsius, setCelsius] = useState();
+  const [isLoading, setIsLoading] = useState("");
 
   const APIKEY = "e1e6c02cb9150b8b8186aa94d5eaa4b9";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${APIKEY}`;
@@ -25,8 +26,11 @@ const App = () => {
     console.log(location);
 
     try {
+      setIsLoading("Loading...");
+
       const res = await axios.get(url);
       const data = await res.data;
+      setIsLoading("");
       console.log(data);
       setWeather(data);
 
@@ -34,6 +38,7 @@ const App = () => {
 
       const celsius = ((fahrenheit - 32) * 5) / 9;
       setCelsius(parseFloat(celsius).toFixed());
+
       // setIsOpen(false);
       // toast.success("Weather Updated");
     } catch (err) {
@@ -69,48 +74,54 @@ const App = () => {
         </div>
       </div>
 
-      <div className="container">
-        <div className="top">
-          <div className="location">
-            <p>{weather?.name}</p>
+      {weather ? (
+        <div className="container">
+          <div className="top">
+            <div className="location">
+              <p>{weather?.name}</p>
+            </div>
+            <div className="temp">
+              {weather ? <h1>{weather.main.temp.toFixed()}°F</h1> : null}
+              {weather ? <h2 className="text-xl">{celsius}°C</h2> : null}
+            </div>
+            <div className="description">
+              <p>{weather?.weather[0].main}</p>
+            </div>
           </div>
-          <div className="temp">
-            {weather ? <h1>{weather.main.temp.toFixed()}°F</h1> : null}
-            {weather ? <h2 className="text-xl">{celsius}°C</h2> : null}
-          </div>
-          <div className="description">
-            <p>{weather?.weather[0].main}</p>
-          </div>
+
+          {/* bottom */}
+
+          {weather ? (
+            <div className="bottom">
+              <div className="feels">
+                {weather ? (
+                  <p className="font-bold">
+                    {weather.main.feels_like.toFixed()}°F
+                  </p>
+                ) : null}
+                <p>Feels Like</p>
+              </div>
+              <div className="hummidity">
+                {weather ? (
+                  <p className="font-bold">{weather.main.humidity}%</p>
+                ) : null}
+                <p>Humidity</p>
+              </div>
+              <div className="wind">
+                {weather ? (
+                  <p className="font-bold">{weather.wind.speed.toFixed()}MPH</p>
+                ) : null}
+
+                <p>Wind Speed</p>
+              </div>
+            </div>
+          ) : null}
         </div>
-
-        {/* bottom */}
-
-        {weather ? (
-          <div className="bottom">
-            <div className="feels">
-              {weather ? (
-                <p className="font-bold">
-                  {weather.main.feels_like.toFixed()}°F
-                </p>
-              ) : null}
-              <p>Feels Like</p>
-            </div>
-            <div className="hummidity">
-              {weather ? (
-                <p className="font-bold">{weather.main.humidity}%</p>
-              ) : null}
-              <p>Humidity</p>
-            </div>
-            <div className="wind">
-              {weather ? (
-                <p className="font-bold">{weather.wind.speed.toFixed()}MPH</p>
-              ) : null}
-
-              <p>Wind Speed</p>
-            </div>
-          </div>
-        ) : null}
-      </div>
+      ) : (
+        <div className="flex justify-center content-center relative top-[30%] ">
+          {isLoading}
+        </div>
+      )}
       <ToastContainer />
     </div>
   );
