@@ -28,9 +28,11 @@ const App = () => {
     try {
       setIsLoading("Loading...");
 
+      // toast.loading("Loading...");
       const res = await axios.get(url);
       const data = await res.data;
       setIsLoading("");
+      // toast.success("Successful");
       console.log(data);
       setWeather(data);
 
@@ -43,6 +45,7 @@ const App = () => {
       // toast.success("Weather Updated");
     } catch (err) {
       console.error(err);
+      setIsLoading("");
       // errorToast("Please input a valid city or state name");
 
       toast.error(
